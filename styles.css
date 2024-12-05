@@ -1,0 +1,141 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: #D4D4D4;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Navigation */
+header {
+  background-color: linear-gradient(to right, #121212, #1a1a1a);
+  padding: 1rem;
+}
+
+nav a {
+  color: #D4D4D4;
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #B0B0B0;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: url('../images/background.avif') no-repeat center center; 
+  background-size: cover;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  animation: fadeIn 2s ease-in;
+}
+
+.hero p {
+  margin-bottom: 2rem; /* Adds space between the text and button */
+}
+
+.cta-button {
+  background-color: #585858;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 44px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  padding: 1rem;
+  text-align: right;
+  background-color: #121212;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: #888888;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Block Container with single background */
+.block {
+  background-color: #1a1a1a; /* Customize as needed */
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 44px;
+  border: 1px solid #444; /* Optional for visual distinction */
+}
+
+.row-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.row > div {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 5px;
+  text-align: center;
+}
+
+.main-row {
+  font-weight: bold;
+  background: transparent; /* To inherit the block's background */
+}
+
+.odds-row {
+  border-top: 1px solid #444; /* Optional separation between odds */
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .row {
+    font-size: 0.3em;
+  }
+}
+
+
