@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecretOdds - Daily Arbitrages & Value Betting</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Lobster&display=swap" rel="stylesheet">
+  <style>
+
+
+
+
+    /* Hide spinners in input[type=number] for Chrome, Safari, Edge, and Opera */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Hide spinners for Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 3rem;
+    }
+
+    .box {
+      background: #1a1a1a;
+      color: white;
+      padding: 2rem;
+      border-radius: 44px;
+      width: 80%;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .box-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .box h2 {
+      font-family: 'Lobster', cursive;
+      margin: 0;
+    }
+
+    .info-button, .toggle-button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      border-radius: 44px;
+      font-size: 0.8rem;
+    }
+
+    .info-text {
+      display: none;
+      margin-top: 1rem;
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 44px;
+    }
+
+    .row-container {
+      display: none;
+    }
+
+    .row {
+      background: #1a1a1a;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 44px;
+      display: flex;
+      justify-content: space-around;
+      font-family: 'Times New Roman', serif;
+      font-size: 0.9rem;
+    }
+
+    .rowm {
+      color: white;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 44px;
+      display: flex;
+      justify-content: space-around;
+      font-family: 'Times New Roman', serif;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <section class="hero">
+    <h1 style="font-family: 'Lobster', cursive; font-size: 3.5rem;">SecretOdds</h1>
+    <p style="font-family: 'Times New Roman', serif; font-size: 1.5rem;">Daily Arbitrages, Value Betting, and More!</p>
+    <button class="cta-button" id="how-does-it-work" style="background-color: #585858; color: white; border: none; padding: 1rem 2rem;">How does it work</button>
+  </section>
+  
+  <div class="container">
+    <!-- Arbitrage Section -->
+    <div class="box">
+      <div class="box-header">
+        <div class="box-title">
+          <h2>Arbitrages</h2>
+        </div>
+        <button class="toggle-button" onclick="toggleRows('arbitrage-rows')">▼</button>
+      </div>
+      <div class="info-text" id="arbitrage-info"></div>
+
+      <!-- First Arbitrage Block -->
+      <div class="block row-container" id="arbitrage-rows">
+        <div class="rowm main-row">
+          <div>Date</div>
+          <div>Hour</div>
+          <div>Game</div>
+          <div>ROI</div>
+        </div>
+        <div class="row odds-row">
+          <div>Odd 1</div>
+          <div>Odd Coeff.</div>
+          <div>BM 1</div>
+        </div>
+        <div class="row odds-row">
+          <div>Odd 2</div>
+          <div>Odd Coeff.</div>
+          <div>BM 2</div>
+        </div>
+        <div class="row odds-row">
+          <div>Odd 3</div>
+          <div>Odd Coeff.</div>
+          <div>BM 3</div>
+        </div>
+      </div>
+
+      <!-- Second Arbitrage Block -->
+      <div class="block row-container" id="arbitrage-rows-2">
+        <div class="rowm main-row">
+          <div>Date</div>
+          <div>Hour</div>
+          <div>Game</div>
+          <div>ROI</div>
+        </div>
+        <div class="row odds-row">
+          <div>Odd 1</div>
+          <div>Odd Coeff.</div>
+          <div>BM 1</div>
+        </div>
+        <div class="row odds-row">
+          <div>Odd 2</div>
+          <div>Odd Coeff.</div>
+          <div>BM 2</div>
+        </div>
+        <div class="row odds-row">
+          <div>Odd 3</div>
+          <div>Odd Coeff.</div>
+          <div>BM 3</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Value Betting Section -->
+    <div class="box">
+      <div class="box-header">
+        <div class="box-title">
+          <h2>Value Bets</h2>
+        </div>
+        <button class="toggle-button" onclick="toggleRows('value-rows')">▼</button>
+      </div>
+      <div class="info-text" id="value-info">
+      </div>
+      <div class="row-container" id="value-rows">
+
+
+        <div class="row odds-row">
+          <div>Date</div><div>Hour</div><div>Game</div><div>Odd</div><div>BM</div>
+        </div>
+
+
+
+        <div class="row odds-row">
+          <div>Date</div><div>Hour</div><div>Game</div><div>Odd</div><div>BM</div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- Calculator Section -->
+    <div class="box">
+      <div class="box-header">
+        <div class="box-title">
+          <h2>Arbitrage Calculator</h2>
+        </div>
+        <button class="toggle-button" onclick="toggleRows('calculator-container')">▼</button>
+      </div>
+      <div class="row-container" id="calculator-container" style="display: none;">
+        <form id="arbitrage-form" style="background: #1a1a1a; padding: 1rem; border-radius: 44px; color: white;">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="background: #1a1a1a; padding: 0.5rem 1rem; border-radius: 44px;">
+              Total Budget: 
+              <input type="number" id="total-budget" placeholder="Enter total budget" step="0.01" 
+                     style="background: #333; color: white; border: none; width: 100%; padding: 0.5rem; border-radius: 44px;">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+              <div style="background: #1a1a1a; padding: 0.5rem 1rem; border-radius: 22px;">
+                Odd 1: 
+                <input type="number" id="odd1" placeholder="Enter odd" step="0.01"
+                       style="background: #333; color: white; border: none; width: 100%; padding: 0.5rem; border-radius: 44px;">
+              </div>
+              <div style="background: #1a1a1a; padding: 0.5rem 1rem; border-radius: 44px;">
+                Budget 1: 
+                <input type="number" id="budget1" placeholder="Budget for Odd1" step="0.01"
+                       style="background: #333; color: white; border: none; width: 100%; padding: 0.5rem; border-radius: 44px;">
+              </div>
+    
+              <div style="background: #1a1a1a; padding: 0.5rem 1rem; border-radius: 44px;">
+                Odd 2: 
+                <input type="number" id="odd2" placeholder="Enter odd" step="0.01"
+                       style="background: #333; color: white; border: none; width: 100%; padding: 0.5rem; border-radius: 44px;">
+              </div>
+              <div style="background: #1a1a1a; padding: 0.5rem 1rem; border-radius: 44px;">
+                Budget 2: 
+                <input type="number" id="budget2" placeholder="Budget for Odd 2" step="0.01"
+                       style="background: #333; color: white; border: none; width: 100%; padding: 0.5rem; border-radius: 44px;">
+              </div>
+    
+              <div style="background: #1a1a1a; padding: 0.5rem 1rem; border-radius: 44px;">
+                Odd 3: 
+                <input type="number" id="odd3" placeholder="Enter odd" step="0.01"
+                       style="background: #333; color: white; border: none; width: 100%; padding: 0.5rem; border-radius: 44px;">
+              </div>
+              <div style="background: #1a1a1a; padding: 0.5rem 1rem; border-radius: 44px;">
+                Budget 3: 
+                <input type="number" id="budget3" placeholder="Budget for Odd 3" step="0.01"
+                       style="background: #333; color: white; border: none; width: 100%; padding: 0.5rem; border-radius: 44px;">
+              </div>
+            </div>
+            <button type="button" onclick="calculateArbitrage()" 
+                    style="background-color: #585858; color: white; border: none; padding: 1rem; cursor: pointer; border-radius: 44px;">
+              Calculate
+            </button>
+          </div>
+        </form>
+        <div id="arbitrage-result" style="margin-top: 1rem; color: white; background: #1a1a1a; padding: 1rem; border-radius: 44px;"></div>
+      </div>
+    </div>
+    
+    <script>
+      function calculateArbitrage() {
+        const totalBudget = parseFloat(document.getElementById("total-budget").value) || 0;
+        const odd1 = parseFloat(document.getElementById("odd1").value) || 0;
+        const odd2 = parseFloat(document.getElementById("odd2").value) || 0;
+        const odd3 = parseFloat(document.getElementById("odd3").value) || 0;
+    
+        const budget1 = parseFloat(document.getElementById("budget1").value) || 0;
+        const budget2 = parseFloat(document.getElementById("budget2").value) || 0;
+        const budget3 = parseFloat(document.getElementById("budget3").value) || 0;
+    
+        const odds = [odd1, odd2, odd3].filter(odd => odd > 0);
+        const budgets = [budget1, budget2, budget3].slice(0, odds.length);
+        const budgetCount = budgets.filter(b => b > 0).length;
+    
+        // Validation: Conflicting input between total budget and individual budgets
+        if (totalBudget > 0 && budgetCount > 0) {
+          document.getElementById("arbitrage-result").textContent = 
+            "Please enter either a total budget or individual budgets, not both.";
+          return;
+        }
+    
+        // Validation: More than one budget constraint
+        if (budgetCount > 1) {
+          document.getElementById("arbitrage-result").textContent = 
+            "There can't be more than one budget constraint.";
+          return;
+        }
+    
+        if (odds.length < 2) {
+          document.getElementById("arbitrage-result").textContent = 
+            "Please enter at least two odds.";
+          return;
+        }
+    
+        let weights, totalStake;
+    
+        if (totalBudget > 0) {
+          const totalInverse = odds.reduce((sum, odd) => sum + 1 / odd, 0);
+          weights = odds.map(odd => (totalBudget / odd) / totalInverse);
+          totalStake = totalBudget;
+        } else {
+          const primaryBudgetIndex = budgets.findIndex(b => b > 0);
+          const primaryBudget = budgets[primaryBudgetIndex];
+          weights = odds.map((odd, i) => {
+            if (i === primaryBudgetIndex) return primaryBudget;
+            return primaryBudget * (odds[primaryBudgetIndex] / odd);
+          });
+    
+          totalStake = weights.reduce((sum, w) => sum + w, 0);
+        }
+    
+        const maxReturn = weights.map((w, i) => w * odds[i]).reduce((max, r) => Math.max(max, r), 0);
+        const roi = ((maxReturn - totalStake) / totalStake) * 100;
+        const profit = maxReturn - totalStake;
+    
+        document.getElementById("arbitrage-result").innerHTML = 
+          `Optimal Bets: ${weights.map((w, i) => `Bet ${i + 1}: €${w.toFixed(2)}`).join(", ")}<br>
+           Total Stake: €${totalStake.toFixed(2)}<br>
+           Max Return: €${maxReturn.toFixed(2)}<br>
+           Profit/Loss: €${profit.toFixed(2)}<br>
+           ROI: ${roi.toFixed(2)}%`;
+      }
+    </script>
+    
+    
+
+
+
+    <!-- Why Choose Us Section -->
+    <section style="
+    padding: 3rem 2rem; background-color: #2a2a2a; text-align: center;">
+    <h2 style="color: #D4D4D4; font-weight: 600;">Why Choose SecretOdds?</h2>
+    <div style="
+      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; padding-top: 2rem;">
+      
+      <div style="
+        width: 300px; background: #333333; padding: 1.5rem; border-radius: 8px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h3 style="color: #D4D4D4; font-weight: 600;">Arbitrage Detection</h3>
+        <p style="color: #565353; font-size: 1rem; line-height: 1.6;">
+          Identify profitable arbitrage opportunities with precision.
+        </p>
+      </div>
+      
+      <div style="
+        width: 300px; background: #333333; padding: 1.5rem; border-radius: 8px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h3 style="color: #D4D4D4; font-weight: 600;">Value Bets</h3>
+        <p style="color: #565353; font-size: 1rem; line-height: 1.6;">
+          Find mispriced odds using advanced machine learning algorithms.
+        </p>
+      </div>
+      
+      <div style="
+        width: 300px; background: #333333; padding: 1.5rem; border-radius: 8px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h3 style="color: #D4D4D4; font-weight: 600;">No Fees</h3>
+        <p style="color: #565353; font-size: 1rem; line-height: 1.6;">
+          Enjoy free access with no subscriptions or ads (for now!).
+        </p>
+      </div>
+    </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section style="
+      background-color: #1a1a1a; color: #D4D4D4; padding: 3rem 2rem; text-align: center;">
+      <h2>What Our Users Say</h2>
+      <div style="
+        display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; padding-top: 2rem;">
+        <div style="
+          width: 300px; background: #121212; padding: 1.5rem; border-radius: 8px;">
+          <p>"I never thought betting could be this scientific. SecretOdds changed my perspective!"</p>
+          <span>- Alex, Pro Bettor</span>
+        </div>
+        <div style="
+          width: 300px; background: #121212; padding: 1.5rem; border-radius: 8px;">
+          <p>"The value betting insights are spot on. I've seen a notable increase in my winnings."</p>
+          <span>- Maria</span>
+        </div>
+        <div style="
+          width: 300px; background: #121212; padding: 1.5rem; border-radius: 8px;">
+          <p>"No ads, no distractions, just pure value. I'm hooked!"</p>
+          <span>- John, Casual Bettor</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="
+    background-color: #121212; color: #D4D4D4; text-align: center; padding: 1rem 0;">
+    <p>&copy; 2024 SecretOdds - All Rights Reserved</p>
+
+    <p style="margin-top: 1rem; color: #888888; font-size: 1rem;">
+      Contact us: <a href="mailto:secret.odds.help@gmail.com" 
+      style="color: #888888; text-decoration: underline;">secret.odds.help@gmail.com</a>
+    </p>
+  </footer>
+
+  <script src="assets/js/scripts.js"></script>
+</body>
+</html>
