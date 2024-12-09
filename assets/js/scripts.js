@@ -84,23 +84,32 @@ document.getElementById('how-does-it-work').addEventListener('click', () => {
 });
 
 
-function toggleRows(id) {
-  const rowContainer = document.getElementById(id);
-  const button = document.querySelector(`[onclick="toggleRows('${id}')"]`);
 
-  // Toggle visibility of the rows
-  const isVisible = rowContainer.style.display === 'block';
-  rowContainer.style.display = isVisible ? 'none' : 'block';
+
+function toggleRows(className) {
+  const rowContainers = document.querySelectorAll(`.${className}`);
+  const button = document.querySelector(`[onclick="toggleRows('${className}')"]`);
+
+  // Determine current visibility state
+  const isVisible = Array.from(rowContainers).every(container => container.style.display === 'block');
+
+  // Toggle visibility of all matching rows
+  rowContainers.forEach(container => {
+    container.style.display = isVisible ? 'none' : 'block';
+  });
 
   // Toggle arrow icon between ▼ and ▲
   button.textContent = isVisible ? '▼' : '▲';
 
-
   // Show warning popup when the section is expanded
   if (!isVisible) {
-    showMessage('You are about to view sensitive betting data. By clicking "Consent", you acknowledge the risks involved.');
+    showMessage('You are about to view sensitive betting data. By clicking "Consent", you acknowledge...');
   }
 }
+
+
+
+
 function showMessage(message) {
   // Create overlay for the popup
   const overlay = document.createElement('div');
