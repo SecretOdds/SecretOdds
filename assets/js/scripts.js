@@ -87,23 +87,28 @@ document.getElementById('how-does-it-work').addEventListener('click', () => {
 
 
 function toggleRows(className) {
-  const rowContainers = document.querySelectorAll(`.${className}`);
+  const rowContainers = document.querySelectorAll(`.${className}, #${className}`);
   const button = document.querySelector(`[onclick="toggleRows('${className}')"]`);
 
-  // Determine current visibility state
-  const isVisible = Array.from(rowContainers).every(container => container.style.display === 'block');
+  if (rowContainers.length > 0) {
+    rowContainers.forEach((container) => {
+      if (container.style.display === "none" || container.style.display === "") {
+        container.style.display = "block";
+      } else {
+        container.style.display = "none";
+      }
+    });
 
-  // Toggle visibility of all matching rows
-  rowContainers.forEach(container => {
-    container.style.display = isVisible ? 'none' : 'block';
-  });
+    // Update the arrow direction
+    if (button) {
+      if (rowContainers[0].style.display === "block") {
+        button.textContent = "▲";
+        showMessage();
 
-  // Toggle arrow icon between ▼ and ▲
-  button.textContent = isVisible ? '▼' : '▲';
-
-  // Show warning popup when the section is expanded
-  if (!isVisible) {
-    showMessage('You are about to view sensitive betting data. By clicking "Consent", you acknowledge...');
+      } else {
+        button.textContent = "▼";
+      }
+    }
   }
 }
 
