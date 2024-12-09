@@ -113,8 +113,6 @@ function toggleRows(className) {
 }
 
 
-
-
 function showMessage(message) {
   // Create overlay for the popup
   const overlay = document.createElement('div');
