@@ -117,6 +117,16 @@ footer p {
   text-align: center;
 }
 
+.main-row > div {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 5px;
+  text-align: center;
+}
+
 .main-row {
   font-weight: bold;
   background: transparent; /* To inherit the block's background */
