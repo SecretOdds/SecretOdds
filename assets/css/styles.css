@@ -151,13 +151,13 @@ footer p {
 
 @media (max-width: 768px) {
   .rowm.main-row {
-    font-size: 1vw;
+    font-size: 0.9vw;
   }
 }
 
 @media (min-width: 1024px) {
   .rowm.main-row {
-    font-size: 0.6vw;
+    font-size: 0.5vw;
   }
 }
 
@@ -171,6 +171,6 @@ footer p {
 
 @media (min-width: 1024px) {
   .row.odss-row {
-    font-size: 0.6vw;
+    font-size: 0.75vw;
   }
 }
