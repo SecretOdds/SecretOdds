@@ -128,7 +128,6 @@ footer p {
 }
 
 .main-row {
-  font-size: 0.9vw; /* Scale row font size dynamically */
 
   font-weight: bold;
   background: transparent; /* To inherit the block's background */
@@ -150,39 +149,28 @@ footer p {
   }
 }
 
-
-
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 3vw; /* Scale margin with viewport width */
+@media (max-width: 768px) {
+  .rowm.main-row {
+    font-size: 1vw;
+  }
 }
 
-.box {
-  background: #1a1a1a;
-  color: white;
-  padding: 2vw; /* Scale padding with viewport width */
-  border-radius: 2vw; /* Rounded corners scale dynamically */
-  width: 80%; /* Adjust to fit content dynamically */
-  margin-bottom: 2vw;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  font-size: 1vw; /* Scale text size with viewport width */
-  word-wrap: break-word; /* Prevent text overflow */
-  white-space: normal;
-}
-
-.row {
-  font-size: 0.9vw; /* Scale row font size dynamically */
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap; /* Allow rows to wrap when space is constrained */
-}
-
-h1, h2, p, .toggle-button, .info-button {
-  font-size: calc(1rem + 1vw); /* Dynamic scaling */
+@media (min-width: 1024px) {
+  .rowm.main-row {
+    font-size: 0.6vw;
+  }
 }
 
 
 
+@media (max-width: 768px) {
+  .row.odds-row {
+    font-size: 1vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .row.odss-row {
+    font-size: 0.6vw;
+  }
+}
