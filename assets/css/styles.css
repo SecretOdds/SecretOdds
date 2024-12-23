@@ -149,7 +149,7 @@ footer p {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .rowm.main-row {
     font-size: 0.9vw;
   }
@@ -157,20 +157,20 @@ footer p {
 
 @media (min-width: 1024px) {
   .rowm.main-row {
-    font-size: 0.5vw;
+    font-size: 0.75vw;
   }
 }
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .row.odds-row {
-    font-size: 1vw;
+    font-size: 0.5vw;
   }
 }
 
 @media (min-width: 1024px) {
   .row.odss-row {
-    font-size: 0.75vw;
+    font-size: 1vw;
   }
 }
